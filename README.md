@@ -7,7 +7,7 @@ We need to make a simple testing system that supports questions with fuzzy logic
 Installation
 ------------
 
-**Clone repository.**
+**Step 1.** Clone repository:
 
 ```bash
 $ get clone https://github.com/Namizee/quize-symfony.git
