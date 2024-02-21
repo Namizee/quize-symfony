@@ -1,4 +1,35 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    Answer
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Your Result!</h1>
+            <div class="result">
+                <div class="result-header">
+                    <div class="result-row">
+                        <div class="result-column bg-green">
+                            <p class="result-header__title">RIGHT</p>
+                        </div>
+                        <div class="result-column bg-red">
+                            <p class="result-header__title">WRONG</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-body">
+                    <div class="result-row">
+                        {% for key, answer in answers %}
+                            {% if key > 5 %}
+                                <div class="result-column">
+                                    {{ answer.description }}
+                                </div>
+                            {% else %}
+                                <div class="result-column">
+                                    {{ answer.description }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

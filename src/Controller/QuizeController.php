@@ -25,15 +25,19 @@ class QuizeController extends AbstractController
 
         if ($form->isSubmitted()) {
             $userId = $this->quizeService->setUserAnswers($request->request->all('answer'));
+
             return $this->redirectToRoute('answer', ['id' => $userId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('question.html.twig', ['form' => $form]);
     }
 
-    #[Route(path: '/answer', name: 'answer', methods: ['GET'])]
-    public function answer(): Response
+    #[Route(path: '/answer/{id<\d+>}', name: 'answer', methods: ['GET'])]
+    public function answer(int $id): Response
     {
-        return $this->render('answer.html.twig');
+        return $this->render(
+            'answer.html.twig',
+            ['answers' => $this->quizeService->getUserAnswers($id)]
+        );
     }
 }

@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\AnswerRepository;
+use App\Repository\QuestionRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -13,6 +16,7 @@ class QuizeService
         private AnswerRepository $answerRepository,
         private EntityManagerInterface $entityManager,
         private UserRepository $userRepository,
+        private QuestionRepository $questionRepository,
     ) {
     }
 
@@ -38,6 +42,13 @@ class QuizeService
     private function isRight(int $questionId, array $answer): bool
     {
         $rightAnswers = $this->answerRepository->findRightAnswersByQuestion($questionId);
+
         return !array_diff($answer, $rightAnswers);
+    }
+
+    public function getUserAnswers(int $userId): array
+    {
+        dd($this->questionRepository->joinAnswer());
+        return $this->questionRepository->findAll();
     }
 }
