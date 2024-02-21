@@ -18,6 +18,10 @@ class QuizeController extends AbstractController
         $form = $this->createForm(QuizeType::class);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted()) {
+            return $this->redirectToRoute('answer', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('question.html.twig', ['form' => $form]);
     }
 

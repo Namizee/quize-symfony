@@ -14,16 +14,16 @@ class QuizeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
-            ->add('category', EntityType::class, [
+            ->add('answer', EntityType::class, [
                 'class' => Answer::class,
                 'choice_label' => 'description',
+                'group_by' => function (Answer $answer): string {
+                    return $answer->getQuestion()->getDescription();
+                },
                 'multiple' => true,
                 'expanded' => true,
-                'group_by' => function (Answer $answer): string {
-                    return $answer->getQuestion()->getId();
-                },
+                'mapped' => false,
             ])
             ->add('result', SubmitType::class, [
                 'label' => 'Result',
