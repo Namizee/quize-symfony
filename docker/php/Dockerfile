@@ -16,6 +16,8 @@ RUN set -o errexit -o nounset -o pipefail -o xtrace; \
             curl \
             freetype-dev \
             git \
+            nodejs \
+            npm \
             hiredis-dev \
             icu \
             libaio-dev \

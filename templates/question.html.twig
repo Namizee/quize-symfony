@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-        <div class="">
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Welcome to quiz!</h1>
             <div class="">
-                {% for label, choices in form.answer.vars.choices %}
-                    <label>
-                        <b>{{ label }}</b>
-                    </label>
-                    {% for key, choice in choices %}
-                        {{ form_widget(form.answer.children[key], {'full_name': 'quize[answers]['~choice.data.question.id~']'}) }}
-                        {{ form_label(form.answer.children[key]) }}
+                <div class="">
+                    {% for label, choices in form.answer.vars.choices %}
+                        <label>
+                            <b>{{ label }}</b>
+                        </label>
+                        {% for key, choice in choices %}
+                            {{ form_widget(form.answer.children[key], {'full_name': 'quize[answers]['~choice.data.question.id~']'}) }}
+                            {{ form_label(form.answer.children[key]) }}
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </div>
             </div>
         </div>
-
-
-
+    </section>
 {% endblock %}
