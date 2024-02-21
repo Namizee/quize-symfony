@@ -19,26 +19,41 @@ $ get clone https://github.com/Namizee/quize-symfony.git
 $ docker compose up -d
 ```
 
-**Step 3.** Start composer
+**Step 3.** Install composer requirements
 
 ```bash
 $ composer install
 ```
 
-Usage
------
-
-**Step 1.** Enter in container:
+**Step 4.** Enter in container:
 
 ```bash
 $ docker exec -it app_project /bin/bash
 ```
 
-**Step 2.** Start npm.
+**Step 5.** Install npm requirements
 
 ```bash
-#in first time
-$ npm install && npm run watch
-#after
+$ npm install
+```
+
+**Step 6.** Complete migrations
+
+```bash
+$ php bin/console doctrine:migration:migrate
+```
+
+**Step 7.** Complete fixtures
+
+```bash
+$ php bin/console doctrine:fixtures:load
+```
+
+Usage
+-----
+
+**Step 1.** Start npm in app-project container.
+
+```bash
 $ npm run watch
 ```
