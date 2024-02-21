@@ -12,7 +12,7 @@
                 {% for key, choice in choices %}
                     <div class="form__option">
                         {{ form_widget(form.answer.children[key], {
-                            'full_name': 'question['~choice.data.question.id~'][]',
+                            'full_name': 'answer['~choice.data.question.id~'][]',
                             'attr': {'class': 'form__input'}})
                         }}
                         {{ form_label(form.answer.children[key], null, {'label_attr' : {'class':'form__label'}}) }}
