@@ -3,19 +3,25 @@
     <section class="section">
         <div class="container">
             <h1 class="title">Welcome to quiz!</h1>
-            <div class="">
-                <div class="">
-                    {% for label, choices in form.answer.vars.choices %}
-                        <label>
-                            <b>{{ label }}</b>
-                        </label>
-                        {% for key, choice in choices %}
-                            {{ form_widget(form.answer.children[key], {'full_name': 'quize[answers]['~choice.data.question.id~']'}) }}
-                            {{ form_label(form.answer.children[key]) }}
-                        {% endfor %}
-                    {% endfor %}
-                </div>
+            {{ form_start(form) }}
+            {% set i = 0 %}
+            {% for label, choices in form.answer.vars.choices %}
+            {% set i = i + 1 %}
+            <p class="form__question">{{ i }}. {{  label }}</p>
+            <div class="form__answers">
+                {% for key, choice in choices %}
+                    <div class="form__option">
+                        {{ form_widget(form.answer.children[key], {
+                            'full_name': 'question['~choice.data.question.id~'][]',
+                            'attr': {'class': 'form__input'}})
+                        }}
+                        {{ form_label(form.answer.children[key], null, {'label_attr' : {'class':'form__label'}}) }}
+                    </div>
+                {% endfor %}
             </div>
+            {% endfor %}
+            {{ form_widget(form.result) }}
+            {{ form_end(form) }}
         </div>
     </section>
 {% endblock %}
