@@ -16,17 +16,27 @@
                 </div>
                 <div class="result-body">
                     <div class="result-row">
-                        {% for key, answer in answers %}
-                            {% if key > 5 %}
-                                <div class="result-column">
-                                    {{ answer.description }}
-                                </div>
+                        {% set rightAnswer = '' %}
+                        {% set wrongAnswer = '' %}
+                        {% for question in questions %}
+                            {% if question.id in rightAnswers %}
+                                {% set rightAnswer %}
+                                    {{ rightAnswer }}
+                                    <p class="result-answer">{{ question.description }}</p>
+                                {% endset %}
                             {% else %}
-                                <div class="result-column">
-                                    {{ answer.description }}
-                                </div>
+                                {% set wrongAnswer%}
+                                    {{ wrongAnswer }}
+                                    <p class="result-answer">{{ question.description }}</p>
+                                {% endset %}
                             {% endif %}
                         {% endfor %}
+                        <div class="result-column">
+                            {{ rightAnswer }}
+                        </div>
+                        <div class="result-column">
+                            {{ wrongAnswer }}
+                        </div>
                     </div>
                 </div>
             </div>

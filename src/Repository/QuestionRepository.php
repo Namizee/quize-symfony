@@ -22,21 +22,4 @@ class QuestionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Question::class);
     }
-
-    /**
-     * @return Question[]
-     */
-    public function joinAnswer(): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT *
-            FROM App\Entity\Question q
-            LEFT JOIN App\Entity\Answer a 
-            ON q.id = a.question_id'
-        );
-
-        return $query->getResult();
-    }
 }

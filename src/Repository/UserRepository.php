@@ -33,4 +33,15 @@ class UserRepository extends ServiceEntityRepository
 
         return $lastUserId->getUserId() + 1;
     }
+
+    public function findRightAnswersByUser(int $userId): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.question')
+            ->andWhere('u.userId = :userId')
+            ->setParameter('userId', $userId)
+            ->andWhere('u.isRight = true')
+            ->getQuery()
+            ->getSingleColumnResult();
+    }
 }
